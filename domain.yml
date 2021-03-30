@@ -1,0 +1,113 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- contact:
+    use_entities: true
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- price:
+    use_entities: true
+- location:
+    use_entities: true
+- appointment:
+    use_entities: true
+- age:
+    use_entities: true
+- name:
+    use_entities: true
+- request_names:
+    use_entities: true
+- service_type:
+    use_entities: true
+- getdata:
+    use_entities: true
+entities:
+- contact
+- age
+- name
+- test_location
+slots:
+  age:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  name:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  contact:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  test_location:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+responses:
+  utter_greet:
+  - buttons:
+    - payload: I want to know about the price of Covid test
+      title: Price
+    - payload: I want to know about to facility location
+      title: Location
+    - payload: I want appointment my Covid-19 Test
+      title: Appointment
+    text: Hey! How are you? What can I help you with?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, I am able to help with Covid-19 Test Queries.
+  utter_location:
+  - text: Covid-19 Lab is located at 123-A DHA Phase 8
+  utter_price:
+  - text: Covid-19 swab test is for Rs. 8000
+  utter_appointment:
+  - text: Ok, let me ask you a few details to get started
+  utter_ask_age:
+  - text: what's your age?
+  utter_ask_name:
+  - text: what's your name?
+  utter_ask_contact:
+  - text: what's your contact number?
+  utter_slots_values:
+  - text: Appointment registered, details are {name}, {age}, {contact} at {test_location}. Time between 0900 to 2100.
+  utter_submit:
+  - text: Ok. Thanks!
+  utter_ask_service_type:
+  - buttons:
+    - payload: I want to get tested in home
+      title: Home
+    - payload: I will visit the laboratory
+      title: Laboratory
+    text: Where would you like to get tested?
+actions:
+- action_get_information
+forms: {}
+e2e_actions: []
